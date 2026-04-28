@@ -1,46 +1,46 @@
 {
-  "nexus_stack_version": "1.0.4",
-  "last_sync": "2026-04-27",
   "partners": [
-    {
-      "id": "tax-1099",
-      "name": "Tax1099",
-      "pillar": "Finance",
-      "url": "https://get.tax1099.com/kj4532shipgc-ptmtk",
-      "tagline": "IRS-Authorized E-Filing",
-      "description": "Essential compliance for 1099s and W-2s."
-    },
     {
       "id": "zoom-info",
       "name": "ZoomInfo",
       "pillar": "Growth",
-      "url": "https://try.zoominfo.com/28vfa3wq9rig",
-      "tagline": "B2B Sales Intelligence",
-      "description": "Verified lead data and buyer intent signals."
+      "description": "Unlock world-class B2B contact data and intent signals to scale your sales pipeline instantly.",
+      "url": "https://try.zoominfo.com/28vfa3wq9rig"
     },
     {
-      "id": "tellent-hr",
-      "name": "Tellent",
-      "pillar": "Logistics",
-      "url": "https://join.tellent.com/sjxu9svfbqoi",
-      "tagline": "Talent Acquisition",
-      "description": "Automated hiring pipelines for high-growth teams."
+      "id": "tax-1099",
+      "name": "Tax1099",
+      "pillar": "Finance",
+      "description": "Automate your 1099, W-2, and 1042-S filings with enterprise-grade security and IRS integration.",
+      "url": "https://www.tax1099.com/efile-1099-forms?ir_clickid=your_id_here"
     },
     {
       "id": "switcher-studio",
       "name": "Switcher Studio",
       "pillar": "Media",
-      "url": "https://start.switcherstudio.com/4wce2lhjw6cl-30j07f",
-      "tagline": "Multicam Production",
-      "description": "Mobile broadcast studio for live events."
+      "description": "Stream the 2026 World Cup like a pro. Multi-camera mobile production for creators on the move.",
+      "url": "https://www.switcherstudio.com/lp/multicam-video-made-easy?ir_clickid=your_id_here"
+    },
+    {
+      "id": "tellent-hr",
+      "name": "Tellent",
+      "pillar": "Growth",
+      "description": "The all-in-one ATS and HR platform to manage your global workforce and seasonal hiring.",
+      "url": "https://www.tellent.com/partner-program?ir_clickid=your_id_here"
     },
     {
       "id": "unitel-voice",
       "name": "Unitel Voice",
-      "pillar": "Operations",
-      "url": "https://unitelvoice.partnerlinks.io/0c7rb6dsretl",
-      "tagline": "Virtual Phone System",
-      "description": "Professional business lines for global teams."
+      "pillar": "Logistics",
+      "description": "Professional virtual phone systems for startups and logistics teams to stay connected globally.",
+      "url": "https://www.unitelvoice.com/features?ir_clickid=your_id_here"
+    },
+    {
+      "id": "e-file-tax",
+      "name": "E-File",
+      "pillar": "Finance",
+      "description": "Fast and easy online tax filing. Get your IRS refund status updated in real-time with Professor Owl guides.",
+      "url": "https://www.e-file.com/?link_id=007949054186005142"
     }
   ]
 }
