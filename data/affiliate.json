@@ -1,0 +1,46 @@
+data/affiliate.json{
+  "nexus_stack_version": "1.0.4",
+  "last_sync": "2026-04-27",
+  "partners": [
+    {
+      "id": "tax-1099",
+      "name": "Tax1099",
+      "pillar": "Finance",
+      "url": "https://get.tax1099.com/kj4532shipgc-ptmtk",
+      "tagline": "IRS-Authorized E-Filing",
+      "description": "Essential compliance for 1099s and W-2s."
+    },
+    {
+      "id": "zoom-info",
+      "name": "ZoomInfo",
+      "pillar": "Growth",
+      "url": "https://try.zoominfo.com/28vfa3wq9rig",
+      "tagline": "B2B Sales Intelligence",
+      "description": "Verified lead data and buyer intent signals."
+    },
+    {
+      "id": "tellent-hr",
+      "name": "Tellent",
+      "pillar": "Logistics",
+      "url": "https://join.tellent.com/sjxu9svfbqoi",
+      "tagline": "Talent Acquisition",
+      "description": "Automated hiring pipelines for high-growth teams."
+    },
+    {
+      "id": "switcher-studio",
+      "name": "Switcher Studio",
+      "pillar": "Media",
+      "url": "https://start.switcherstudio.com/4wce2lhjw6cl-30j07f",
+      "tagline": "Multicam Production",
+      "description": "Mobile broadcast studio for live events."
+    },
+    {
+      "id": "unitel-voice",
+      "name": "Unitel Voice",
+      "pillar": "Operations",
+      "url": "https://unitelvoice.partnerlinks.io/0c7rb6dsretl",
+      "tagline": "Virtual Phone System",
+      "description": "Professional business lines for global teams."
+    }
+  ]
+}
