@@ -1,0 +1,31 @@
+name: Vulture 10K Engine Auto-Gen
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/checkout@v3
+      with:
+        python-version: '3.9'
+
+    - name: Generate Pages
+      run: python scripts/vulture_gen.py
+
+    - name: Commit and Push changes
+      run: |
+        git config --global user.name "Nexus-Stack-Bot"
+        git config --global user.email "bot@nexusstack.io"
+        git add .
+        git commit -m "Auto-generated pages via Vulture Engine" || echo "No changes to commit"
+        git push
