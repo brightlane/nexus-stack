@@ -1,49 +1,49 @@
-name: Nexus Stack Autonomous Engine
+name: Vulture 10K Autonomous Engine
 
 on:
   push:
     branches:
       - main
   schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
+    - cron: '0 0 * * *'  # Midnight daily execution
+  workflow_dispatch:      # Manual trigger button
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     
     permissions:
       contents: write
 
     steps:
-      - name: Checkout Repository
+      - name: 🛰️ Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Set up Python 3.9
+      - name: 🐍 Setup Python 3.9
         uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
-      - name: Install Dependencies
+      - name: 📦 Install Requirements
         run: |
           python -m pip install --upgrade pip
           pip install requests tweepy
 
-      - name: 🛠️ Execute Vulture 10K Engine
+      - name: 🛠️ Run Vulture Page Generator
         run: python scripts/vulture_gen.py
 
-      - name: 📝 Execute Chameleon Blog Stitcher
+      - name: 📝 Run Chameleon Content Stitcher
         run: python scripts/vulture_stitcher.py
 
-      - name: 📅 Generate Daily Protocol Update
+      - name: 📅 Run Daily Update Protocol
         run: python scripts/daily_blog.py
 
       - name: 🗺️ Refresh Global Sitemap
         run: python scripts/generate_sitemap.py
 
-      - name: 📡 Broadcast to AI Ecosystems
+      - name: 📡 AI Ecosystem Broadcast
         env:
           AYRSHARE_API_KEY: ${{ secrets.AYRSHARE_API_KEY }}
           X_API_KEY: ${{ secrets.X_API_KEY }}
@@ -52,20 +52,19 @@ jobs:
           X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
         run: python scripts/ai_broadcaster.py
 
-      - name: 🚀 Sync, Commit, and Push
+      - name: 🚀 Sync and Force-Deploy Updates
         run: |
           git config --global user.name "Nexus-Stack-Bot"
           git config --global user.email "bot@nexusstack.io"
           
-          # Add all generated files
+          # Stage all generated content
           git add .
           
-          # Commit changes locally
-          git commit -m "Automated Content Refresh: $(date +'%Y-%m-%d %H:%M')" || echo "No changes to commit"
+          # Commit locally - skip if nothing changed
+          git commit -m "Vulture 10K Refresh: $(date +'%Y-%m-%d %H:%M')" || exit 0
           
-          # This is the magic fix: Pull changes, but if there is a conflict,
-          # the Bot's version "Wins" automatically.
+          # Force resolution: The Bot's new content always "Wins" conflicts
           git pull origin main --rebase -X ours
           
-          # Final push
+          # Push to the live repository
           git push origin main
