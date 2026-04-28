@@ -4,31 +4,28 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '0 0 * * *'  # This runs the script every night at 12:00 AM
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
-
-    - name: Generate Pages
-      run: python scripts/vulture_gen.py
-
-    - name: Generate Sitemap
-      run: python scripts/generate_sitemap.py
-
-    - name: Commit and Push changes
-      run: |
-        git config --global user.name "Nexus-Stack-Bot"
-        git config --global user.email "bot@nexusstack.io"
-        git add .
-        git commit -m "Auto-generated pages and sitemap" || echo "No changes to commit"
-        git push
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Run Generators
+        run: |
+          python scripts/vulture_gen.py
+          python scripts/vulture_stitcher.py
+          python scripts/daily_blog.py
+          python scripts/generate_sitemap.py
+      - name: Deploy Changes
+        run: |
+          git config --global user.name "Nexus-Stack-Bot"
+          git config --global user.email "bot@nexusstack.io"
+          git add .
+          git commit -m "Daily Automated Content Refresh" || echo "No changes"
+          git push
