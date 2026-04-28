@@ -18,12 +18,13 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Essential for rebase to work correctly
 
       - name: Set up Python 3.9
         uses: actions/setup-python@v5
         with:
           python-version: '3.9'
-          # Cache removed to prevent the "No file matched" error
 
       - name: Install Dependencies
         run: |
@@ -51,10 +52,25 @@ jobs:
           X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
         run: python scripts/ai_broadcaster.py
 
-      - name: 🚀 Commit and Push All Updates
+      - name: 🚀 Sync, Commit, and Push
         run: |
           git config --global user.name "Nexus-Stack-Bot"
           git config --global user.email "bot@nexusstack.io"
+          
+          # Add all generated files
           git add .
-          git commit -m "Automated Content Refresh: $(date +'%Y-%m-%d %H:%M')" || exit 0
-          git push
+          
+          # Check if there are changes to commit
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          # Commit changes locally
+          git commit -m "Automated Content Refresh: $(date +'%Y-%m-%d %H:%M')"
+          
+          # Pull any browser-made edits and put our new posts on top
+          git pull --rebase origin main
+          
+          # Final push
+          git push origin main
