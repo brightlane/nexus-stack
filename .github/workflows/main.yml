@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 0 * * *'  # Runs every night at 12:00 AM UTC
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -23,12 +23,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.9'
-          cache: 'pip' # This now works because requirements.txt exists
+          # Cache removed to prevent the "No file matched" error
 
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install requests tweepy
 
       - name: 🛠️ Execute Vulture 10K Engine
         run: python scripts/vulture_gen.py
