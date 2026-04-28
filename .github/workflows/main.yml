@@ -19,7 +19,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Essential for rebase to work correctly
+          fetch-depth: 0
 
       - name: Set up Python 3.9
         uses: actions/setup-python@v5
@@ -60,17 +60,12 @@ jobs:
           # Add all generated files
           git add .
           
-          # Check if there are changes to commit
-          if git diff-index --quiet HEAD --; then
-            echo "No changes to commit"
-            exit 0
-          fi
-
           # Commit changes locally
-          git commit -m "Automated Content Refresh: $(date +'%Y-%m-%d %H:%M')"
+          git commit -m "Automated Content Refresh: $(date +'%Y-%m-%d %H:%M')" || echo "No changes to commit"
           
-          # Pull any browser-made edits and put our new posts on top
-          git pull --rebase origin main
+          # This is the magic fix: Pull changes, but if there is a conflict,
+          # the Bot's version "Wins" automatically.
+          git pull origin main --rebase -X ours
           
           # Final push
           git push origin main
